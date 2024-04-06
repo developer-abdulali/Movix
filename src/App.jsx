@@ -3,7 +3,7 @@ import { fetchDataFromAPI } from "./utils/api";
 import { useSelector, useDispatch } from "react-redux";
 import { getApiConfiguration } from "./redux/homeSlice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/home/home";
+import Home from "./pages/home/Home";
 import Details from "./pages/details/details";
 import SearchResults from "./pages/searchResults/searchResults";
 import Explore from "./pages/explore/explore";

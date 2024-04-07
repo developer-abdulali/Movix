@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
 import logo from "../../assets/movix-logo.svg";
 
@@ -17,9 +17,9 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-useEffect(()=>{
-  window.scrollTo(0,0)
-},[location])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const controlNavbar = () => {
     if (window.scrollY > 200) {
@@ -69,12 +69,11 @@ useEffect(()=>{
   };
 
   return (
-    <header className={`header ${mobileMenu ? "mobileView" : ""}`}>
-      {/* // <header className={`header ${mobileMenu ? "mobileView" : ""}${show}`}> */}
+    <header className={`header ${mobileMenu ? "mobileView" : ""}${show}`}>
       <ContentWrapper>
-        <div className="logo">
+        <Link to="/" className="logo">
           <img src={logo} alt="" />
-        </div>
+        </Link>
         <ul className="menuItems">
           <li className="menuItem" onClick={() => navigationHandler("movie")}>
             Movies

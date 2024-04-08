@@ -6,12 +6,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Details from "./pages/details/Details";
 import SearchResults from "./pages/searchResults/searchResults";
-import Explore from "./pages/explore/explore";
 import PageNotFound from "./pages/404/PageNotFound";
+import Explore from "./pages/explore/Explore";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
-const App = () => {
+function App() {
   const dispatch = useDispatch();
   const { url } = useSelector((state) => state.home);
 
@@ -36,13 +36,17 @@ const App = () => {
     let promises = [];
     let endPoints = ["tv", "movie"];
     let allGenres = {};
+
     endPoints.forEach((url) => {
       promises.push(fetchDataFromAPI(`/genre/${url}/list`));
     });
+
     const data = await Promise.all(promises);
-    data?.map(({ genres }) => {
+
+    data.map(({ genres }) => {
       return genres.map((item) => (allGenres[item.id] = item));
     });
+
     dispatch(getGenres(allGenres));
   };
 
@@ -52,13 +56,13 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:mediaType/:id" element={<Details />} />
-        <Route path="/seach/:query" element={<SearchResults />} />
+        <Route path="/search/:query" element={<SearchResults />} />
         <Route path="/explore/:mediaType" element={<Explore />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>
   );
-};
+}
 
 export default App;

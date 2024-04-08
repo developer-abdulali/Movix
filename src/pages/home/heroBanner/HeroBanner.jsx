@@ -11,7 +11,6 @@ const HeroBanner = () => {
   const [background, setBackground] = useState("");
   const [query, setQuery] = useState("");
   const { url } = useSelector((state) => state.home);
-
   const { data, loading } = useFetch("/movie/upcoming");
 
   useEffect(() => {
@@ -48,7 +47,7 @@ const HeroBanner = () => {
               onChange={(e) => setQuery(e.target.value)}
               onKeyUp={searchQueryHandler}
             />
-            <button>Search</button>
+            <button onClick={()=>searchQueryHandler}>Search</button>
           </div>
         </div>
       </ContentWrapper>

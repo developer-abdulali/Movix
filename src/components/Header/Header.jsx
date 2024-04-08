@@ -14,6 +14,7 @@ const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState("");
+  const [scrolledDown, setScrolledDown] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -23,12 +24,14 @@ const Header = () => {
 
   const controlNavbar = () => {
     if (window.scrollY > 200) {
+      setScrolledDown(true); // Update scrolledDown state
       if (window.scrollY > lastScrollY && !mobileMenu) {
         setShow("hide");
       } else {
         setShow("show");
       }
     } else {
+      setScrolledDown(false); // Update scrolledDown state
       setShow("top");
     }
     setLastScrollY(window.scrollY);
@@ -59,6 +62,7 @@ const Header = () => {
     setMobileMenu(true);
     setShowSearch(false);
   };
+
   const navigationHandler = (type) => {
     if (type === "movie") {
       navigate("/explore/movie");
@@ -69,7 +73,11 @@ const Header = () => {
   };
 
   return (
-    <header className={`header ${mobileMenu ? "mobileView" : ""}${show}`}>
+    <header
+      className={`header ${mobileMenu ? "mobileView" : ""} ${
+        scrolledDown ? "top" : ""
+      }`}
+    >
       <ContentWrapper>
         <Link to="/" className="logo">
           <img src={logo} alt="" />

@@ -4,7 +4,7 @@ import "./style.scss";
 import useFetch from "../../../hooks/useFetch";
 import { useSelector } from "react-redux";
 import Img from "../../../components/LazyLoadImg/img";
-import ContentWrapper from "../../../components/ContentWrapper/ContentWrapper"
+import ContentWrapper from "../../../components/ContentWrapper/ContentWrapper";
 
 const HeroBanner = () => {
   const navigate = useNavigate();
@@ -19,6 +19,11 @@ const HeroBanner = () => {
       data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
     setBackground(bg);
   }, [data]);
+  const handleSearch = () => {
+    if (query.trim().length > 0) {
+      navigate(`/search/${query}`);
+    }
+  };
 
   const searchQueryHandler = (e) => {
     if (e.key === "Enter" && query.length > 0) {
@@ -47,7 +52,7 @@ const HeroBanner = () => {
               onChange={(e) => setQuery(e.target.value)}
               onKeyUp={searchQueryHandler}
             />
-            <button onClick={()=>searchQueryHandler}>Search</button>
+            <button onClick={handleSearch}>Search</button>
           </div>
         </div>
       </ContentWrapper>

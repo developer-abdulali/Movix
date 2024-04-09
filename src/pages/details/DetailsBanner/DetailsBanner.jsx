@@ -43,7 +43,7 @@ const DetailsBanner = ({ video, crew }) => {
               <ContentWrapper>
                 <div className="content">
                   <div className="left">
-                    {data.poster_path ? (
+                    {data?.poster_path ? (
                       <Img
                         src={url?.backdrop + data?.poster_path}
                         className="posterImg"

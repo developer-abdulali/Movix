@@ -5,7 +5,6 @@ import { VscChromeClose } from "react-icons/vsc";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
 import logo from "../../assets/movix-logo.svg";
-
 import "./style.scss";
 
 const Header = () => {
@@ -23,15 +22,15 @@ const Header = () => {
   }, [location]);
 
   const controlNavbar = () => {
-    if (window.scrollY > 200) {
-      setScrolledDown(true); // Update scrolledDown state
+    if (window.scrollY > 10) {
+      setScrolledDown(true);
       if (window.scrollY > lastScrollY && !mobileMenu) {
         setShow("hide");
       } else {
         setShow("show");
       }
     } else {
-      setScrolledDown(false); // Update scrolledDown state
+      setScrolledDown(false);
       setShow("top");
     }
     setLastScrollY(window.scrollY);
